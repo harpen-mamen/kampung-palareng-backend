@@ -20,9 +20,10 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Generate key (optional)
 RUN php artisan key:generate || true
+RUN chmod +x /app/docker-start.sh
 
 # Expose port
 EXPOSE 8000
 
 # Run Laravel
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD ["/app/docker-start.sh"]
